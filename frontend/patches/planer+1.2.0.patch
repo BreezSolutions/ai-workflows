@@ -1,0 +1,43 @@
+diff --git a/node_modules/planer/lib/htmlPlaner.js b/node_modules/planer/lib/htmlPlaner.js
+index 41b7425..37c2f76 100644
+--- a/node_modules/planer/lib/htmlPlaner.js
++++ b/node_modules/planer/lib/htmlPlaner.js
+@@ -140,7 +140,7 @@
+ 
+   exports.cutFromBlock = function(emailDocument) {
+     var afterSplitter, fromBlock, lastBlock, parentDiv, ref, splitterElement, textNode, xpathQuery, xpathResult;
+-    xpathQuery = "//*[starts-with(normalize-space(.), 'From:')]|//*[starts-with(normalize-space(.), 'Date:')]";
++    xpathQuery = "//*[starts-with(normalize-space(.), 'From:')]|//*[starts-with(normalize-space(.), 'Date:')]|//*[starts-with(normalize-space(.), '\u5BC4\u4EF6\u8005')]|//*[starts-with(normalize-space(.), '\u5BC4\u4EF6\u65E5\u671F')]|//*[starts-with(normalize-space(.), '\u53D1\u4EF6\u4EBA')]|//*[starts-with(normalize-space(.), '\u5DEE\u51FA\u4EBA')]";
+     xpathResult = emailDocument.evaluate(xpathQuery, emailDocument, null, 5, null);
+     while (fromBlock = xpathResult.iterateNext()) {
+       lastBlock = fromBlock;
+@@ -152,7 +152,7 @@
+         return true;
+       }
+     }
+-    xpathQuery = "//text()[starts-with(normalize-space(.), 'From:')]|//text()[starts-with(normalize-space(.), 'Date:')]";
++    xpathQuery = "//text()[starts-with(normalize-space(.), 'From:')]|//text()[starts-with(normalize-space(.), 'Date:')]|//text()[starts-with(normalize-space(.), '\u5BC4\u4EF6\u8005')]|//text()[starts-with(normalize-space(.), '\u5BC4\u4EF6\u65E5\u671F')]|//text()[starts-with(normalize-space(.), '\u53D1\u4EF6\u4EBA')]|//text()[starts-with(normalize-space(.), '\u5DEE\u51FA\u4EBA')]";
+     xpathResult = emailDocument.evaluate(xpathQuery, emailDocument, null, 9, null);
+     textNode = xpathResult.singleNodeValue;
+     if (textNode == null) {
+diff --git a/node_modules/planer/lib/regexes.js b/node_modules/planer/lib/regexes.js
+index b42fc83..74115ab 100644
+--- a/node_modules/planer/lib/regexes.js
++++ b/node_modules/planer/lib/regexes.js
+@@ -14,7 +14,7 @@
+ 
+   exports.ORIGINAL_MESSAGE = new RegExp('[\\s]*[-]+[ ]*(Original Message|Reply Message|Urspr\xfcngliche Nachricht|Antwort Nachricht|Oprindelig meddelelse)[ ]*[-]+', 'i');
+ 
+-  exports.FROM_COLON_OR_DATE_COLON = new RegExp('(_+\r?\n)?[\\s]*(:?[*]?From|Van|De|Von|Fra|Fr\xe5n|Date|Datum|Envoy\xe9|Skickat|Sendt)[\\s]?:[*]? .*', 'i');
++  exports.FROM_COLON_OR_DATE_COLON = new RegExp('(_+\r?\n)?[\\s]*(:?[*]?From|Van|De|Von|Fra|Fr\xe5n|Date|Datum|Envoy\xe9|Skickat|Sendt|\u5BC4\u4EF6\u8005|\u5BC4\u4EF6\u65E5\u671F|\u53D1\u4EF6\u4EBA|\u5DEE\u51FA\u4EBA|\uBC1C\uC2E0)[\\s]?[:：][*]? .*', 'i');
+ 
+   exports.DATE_PERSON = new RegExp('(\\d+/\\d+/\\d+|\\d+\\.\\d+\\.\\d+).*@');
+ 
+@@ -32,6 +32,6 @@
+ 
+   exports.SPLITTER_PATTERNS = [exports.ORIGINAL_MESSAGE, exports.DATE_PERSON, exports.ON_DATE_SMB_WROTE, exports.ON_DATE_WROTE_SMB, exports.FROM_COLON_OR_DATE_COLON, exports.SPELLED_OUT_DATE];
+ 
+-  exports.BEGIN_FROM_OR_DATE = new RegExp('^From:|^Date');
++  exports.BEGIN_FROM_OR_DATE = new RegExp('^From:|^Date|^\u5BC4\u4EF6\u8005[:：]|^\u5BC4\u4EF6\u65E5\u671F[:：]|^\u53D1\u4EF6\u4EBA[:：]|^\u5DEE\u51FA\u4EBA[:：]|^\uBC1C\uC2E0[:：]');
+ 
+ }).call(this);
