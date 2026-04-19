@@ -1,4 +1,4 @@
-app = 'slack-mcp-bot'
+app = 'ai-workflows'
 primary_region = 'sjc'
 
 [build]
