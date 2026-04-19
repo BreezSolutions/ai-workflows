@@ -8,6 +8,7 @@ import WorkflowEditor from "./pages/WorkflowEditor";
 import WorkflowDetail from "./pages/WorkflowDetail";
 import Approvals from "./pages/Approvals";
 import Activity from "./pages/Activity";
+import Knowledge from "./pages/Knowledge";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -21,6 +22,7 @@ createRoot(document.getElementById("root")!).render(
           <Route path="workflows/:id/edit" element={<WorkflowEditor />} />
           <Route path="approvals" element={<Approvals />} />
           <Route path="activity" element={<Activity />} />
+          <Route path="knowledge" element={<Knowledge />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -8,6 +8,7 @@ import executionRoutes from "./routes/executions.js";
 import approvalRoutes from "./routes/approvals.js";
 import triggerRoutes from "./routes/triggers.js";
 import connectionRoutes from "./routes/connections.js";
+import knowledgeRoutes from "./routes/knowledge.js";
 import actionStagingRoutes from "./routes/action-staging.js";
 import authRoutes from "./routes/auth.js";
 import { slackThrottle } from "../core/throttle.js";
@@ -165,6 +166,7 @@ export function createApp(): express.Application {
   app.use("/api/approvals", approvalRoutes);
   app.use("/api/workflows", triggerRoutes);
   app.use("/api/connections", connectionRoutes);
+  app.use("/api/knowledge", knowledgeRoutes);
   app.use("/api/executions", actionStagingRoutes);
 
   // Slack Events API — receives user-scoped events (message.channels, message.groups, etc.)

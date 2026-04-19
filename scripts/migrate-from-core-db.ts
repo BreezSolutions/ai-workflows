@@ -21,7 +21,14 @@ const SOURCE_DB = process.env.SOURCE_DB ?? "prod-ai-bot";
 const TARGET_DB = process.env.TARGET_DB ?? "prod-ai-automation";
 const DRY_RUN = process.env.DRY_RUN === "1";
 
-const COLLECTIONS = ["workflows", "execution_runs", "execution_items", "thread_sessions"];
+const COLLECTIONS = [
+  "workflows",
+  "execution_runs",
+  "execution_items",
+  "thread_sessions",
+  "knowledge_types",
+  "knowledge_records",
+];
 
 async function main() {
   const client = new MongoClient(MONGO_URI!);
