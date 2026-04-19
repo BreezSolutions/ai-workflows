@@ -14,7 +14,6 @@ RUN npm ci
 COPY tsconfig.json .
 COPY src/ src/
 COPY scripts/ scripts/
-COPY assets/ assets/
 RUN npx tsc
 COPY --from=frontend /frontend/dist ./frontend/dist
 CMD ["node", "dist/index.js"]
