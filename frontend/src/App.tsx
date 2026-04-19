@@ -50,6 +50,7 @@ function App() {
           <div className="flex gap-1 ml-4">
             <NavLink to="/dashboard" className={navClass}>Dashboard</NavLink>
             <NavLink to="/approvals" className={navClass}>Approvals</NavLink>
+            <NavLink to="/activity" className={navClass}>Activity</NavLink>
             <NavLink to="/workflows/new" className={navClass}>+ New Workflow</NavLink>
           </div>
           <div className="ml-auto flex items-center gap-2">
